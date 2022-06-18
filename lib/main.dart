@@ -1,16 +1,30 @@
+import 'package:first_flutter_project/demo_image.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    imageCache!.clear();
+    super.dispose();
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -24,29 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyWidget(),
+      home: const DemoML(),
     );
-  }
-}
-
-class MyWidget extends StatefulWidget {
-  const MyWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
-
-class _MyWidgetState extends State<MyWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:Text("Neeraj")
-      ),
-      body:Center(
-        child:Text("Good Morning")
-      )
-    );
-    
   }
 }
